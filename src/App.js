@@ -8,6 +8,40 @@ import { Container, ListGroup, Col, Row, Form } from "react-bootstrap";
 function App() {
   const [currentData, setData] = useState(null);
   const [fontSize, setFontSize] = useState(0);
+
+  const handleScroll = () => {
+    let ls = window.localStorage;
+    let sTop;
+    if (typeof window.orientation !== "undefined") {
+      sTop = window.pageYOffset;
+    } else {
+      sTop = document.documentElement.scrollTop || document.body.scrollTop || 0;
+    }
+    ls.setItem("sTop", sTop);
+  };
+
+  useEffect(() => {
+    let ls = window.localStorage;
+    if (ls.getItem("sTop")) {
+      let oldStop = Number(ls.getItem("sTop"));
+      if (oldStop) {
+        if (typeof window.orientation !== "undefined") {
+          window.pageYOffset = oldStop;
+        } else {
+          document.documentElement.scrollTop = oldStop;
+          document.body.scrollTop = oldStop;
+        }
+      }
+    }
+  });
+
+  useEffect(() => {
+    window.addEventListener("scroll", handleScroll);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
+
   useEffect(() => {
     const getdata = async () => {
       const { data } = await axios.get(
@@ -24,7 +58,7 @@ function App() {
     <Container fluid="xl">
       {currentData && (
         <div>
-          <h2 className="text-center mt-2 text-secondary">
+          <h2 className="text-center mt-2 text-secondary" id="heading">
             新浪全球实时新闻直播
           </h2>
           <Form className="pl-5 pr-5">
