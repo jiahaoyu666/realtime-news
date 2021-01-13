@@ -1,24 +1,42 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useEffect, useState } from "react";
+import axios from "axios";
+
+import "./App.css";
+import "bootstrap/dist/css/bootstrap.min.css";
+import { Container, ListGroup } from "react-bootstrap";
 
 function App() {
+  const [currentData, setData] = useState(null);
+  useEffect(() => {
+    const getdata = async () => {
+      const { data } = await axios.get(
+        "https://ruanyf.github.io/sina-news/rss.json"
+      );
+      setData(data);
+    };
+    getdata();
+  }, []);
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Container>
+      {currentData && (
+        <div>
+          <h4 className="text-center mt-2 text-secondary">
+            {currentData.description}
+          </h4>
+          <ListGroup>
+            {currentData.items.map((item, index) => (
+              <ListGroup.Item key={item.id}>
+                {index + 1}.{item.title}(
+                <a target="_blank" rel="noreferrer" href={item.url}>
+                  {new Date(item.date_modified).toLocaleTimeString()}
+                </a>
+                )
+              </ListGroup.Item>
+            ))}
+          </ListGroup>
+        </div>
+      )}
+    </Container>
   );
 }
 
