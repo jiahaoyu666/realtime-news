@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import { sinaApi } from "./apis";
 
 import "./App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -12,11 +13,7 @@ function App() {
   const handleScroll = () => {
     let ls = window.localStorage;
     let sTop;
-    if (typeof window.orientation !== "undefined") {
-      sTop = window.pageYOffset;
-    } else {
-      sTop = document.documentElement.scrollTop || document.body.scrollTop || 0;
-    }
+    sTop = document.documentElement.scrollTop || document.body.scrollTop;
     ls.setItem("sTop", sTop);
   };
 
@@ -25,12 +22,8 @@ function App() {
     if (ls.getItem("sTop")) {
       let oldStop = Number(ls.getItem("sTop"));
       if (oldStop) {
-        if (typeof window.orientation !== "undefined") {
-          window.pageYOffset = oldStop;
-        } else {
-          document.documentElement.scrollTop = oldStop;
-          document.body.scrollTop = oldStop;
-        }
+        document.documentElement.scrollTop = oldStop;
+        document.body.scrollTop = oldStop;
       }
     }
   });
@@ -44,9 +37,7 @@ function App() {
 
   useEffect(() => {
     const getdata = async () => {
-      const { data } = await axios.get(
-        "https://ruanyf.github.io/sina-news/rss.json"
-      );
+      const { data } = await axios.get(sinaApi);
       setData(data);
     };
     getdata();
@@ -59,7 +50,7 @@ function App() {
       {currentData && (
         <div>
           <h2 className="text-center mt-2 text-secondary" id="heading">
-            新浪全球实时新闻直播
+            新闻汇总
           </h2>
           <Form className="pl-5 pr-5">
             <Form.Group>
