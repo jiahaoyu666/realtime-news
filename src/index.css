@@ -5,14 +5,15 @@
   line-height: 1.5;
 }
 
-/* @media only screen and (max-width: 600px) {
-  .main-font-size {
-    font-size: 1.5em;
-  }
-} */
-
-/* @media screen and (max-width: 600px) {
-  .main-font-size {
-    font-size: 50px !important;
-  }
-} */
+body,
+.list-group-item,
+h2,
+.change-font-size,
+.custom-select,
+.news-type option {
+  color: #ffffffbe !important;
+  background: rgb(0, 0, 0) !important;
+}
+.list-group-item {
+  border-color: #ffffffc5 !important;
+}

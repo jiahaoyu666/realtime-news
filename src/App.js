@@ -4,7 +4,15 @@ import { sinaApi, getMultileTypes, contentTypes } from "./apis";
 
 import "./App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
-import { Container, ListGroup, Col, Row, Form, Image } from "react-bootstrap";
+import {
+  Container,
+  ListGroup,
+  Col,
+  Row,
+  Form,
+  Image,
+  Spinner,
+} from "react-bootstrap";
 
 function App() {
   const [currentData, setData] = useState(null);
@@ -69,12 +77,12 @@ function App() {
     <Container fluid="xl">
       {currentData && (
         <div>
-          <h2 className="text-center mt-2 text-secondary" id="heading">
+          <h2 className="text-center mt-2 " id="heading">
             新闻汇总
           </h2>
           <Form className="pl-5 pr-5 d-flex justify-content-start">
             <Form.Group className=" mt-2 mr-2">
-              <Form.Label>调节字体大小</Form.Label>
+              <Form.Label className="change-font-size">调节字体大小</Form.Label>
               <Form.Control
                 type="range"
                 custom
@@ -88,7 +96,7 @@ function App() {
               />
             </Form.Group>
             <Form.Group>
-              <Form.Label>选择类别</Form.Label>
+              <Form.Label className="type-label">选择类别</Form.Label>
               <Form.Control
                 as="select"
                 custom
@@ -105,6 +113,19 @@ function App() {
               </Form.Control>
             </Form.Group>
           </Form>
+          {loading && (
+            <Spinner
+              animation="border"
+              size="sm"
+              role="status"
+              style={{
+                width: "200px",
+                height: "200px",
+                margin: "auto",
+                display: "block",
+              }}
+            />
+          )}
           {contentType === "sina" && !loading && (
             <Row className="justify-content-md-center">
               <Col xs md="auto">
