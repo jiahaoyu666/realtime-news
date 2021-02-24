@@ -12,6 +12,7 @@ import {
   Form,
   Image,
   Spinner,
+  Button,
 } from "react-bootstrap";
 
 function App() {
@@ -80,7 +81,7 @@ function App() {
           <h2 className="text-center mt-2 " id="heading">
             新闻汇总
           </h2>
-          <Form className="pl-5 pr-5 d-flex justify-content-start">
+          <Form className="pl-5 pr-5 d-flex justify-content-start align-items-center">
             <Form.Group className=" mt-2 mr-2">
               <Form.Label className="change-font-size">调节字体大小</Form.Label>
               <Form.Control
@@ -112,6 +113,15 @@ function App() {
                 ))}
               </Form.Control>
             </Form.Group>
+            <Button
+              className=" ml-3 mt-3 d-block"
+              variant="outline-light"
+              onClick={() => {
+                window.location.reload();
+              }}
+            >
+              <i className="fas fa-sync-alt"></i>
+            </Button>
           </Form>
           {loading && (
             <Spinner
