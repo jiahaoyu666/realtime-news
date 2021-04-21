@@ -81,7 +81,7 @@ function App() {
           <h2 className="text-center mt-2 " id="heading">
             新闻汇总
           </h2>
-          <Form className="pl-5 pr-5 d-flex justify-content-start align-items-center">
+          <Form className="pl-3 pr-3 d-flex justify-content-start align-items-center">
             <Form.Group className=" mt-2 mr-2">
               <Form.Label className="change-font-size">调节字体大小</Form.Label>
               <Form.Control
