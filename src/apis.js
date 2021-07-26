@@ -1,4 +1,4 @@
-export const sinaApi = "https://ruanyf.github.io/sina-news/rss.json";
+export const sinaApi = "https://sina-news.vercel.app/rss.json";
 
 export const getMultileTypes = (type) => {
   const url = `https://api.tianapi.com/${type}/index?key=84f91abca9ea39adad5bb11d05b65057&num=50`;
