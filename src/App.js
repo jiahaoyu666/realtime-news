@@ -28,6 +28,7 @@ function App() {
       if (val === "sina") {
         setLoading(true);
         mydata = await axios.get(sinaApi);
+        console.log('mydata: ', mydata);
       } else {
         setLoading(true);
         mydata = await axios.get(getMultileTypes(val));
@@ -63,7 +64,7 @@ function App() {
       window.removeEventListener("scroll", handleScroll);
     };
   }, []);
-  
+
 
   useEffect(() => {
     const getdata = async () => {
