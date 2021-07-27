@@ -63,6 +63,7 @@ function App() {
       window.removeEventListener("scroll", handleScroll);
     };
   }, []);
+  
 
   useEffect(() => {
     const getdata = async () => {
