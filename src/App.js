@@ -28,7 +28,6 @@ function App() {
       if (val === "sina") {
         setLoading(true);
         mydata = await axios.get(sinaApi);
-        console.log('mydata: ', mydata);
       } else {
         setLoading(true);
         mydata = await axios.get(getMultileTypes(val));
@@ -69,6 +68,7 @@ function App() {
   useEffect(() => {
     const getdata = async () => {
       const { data } = await axios.get(sinaApi);
+      console.log('data: ', data);
       setData(data);
     };
     getdata();
