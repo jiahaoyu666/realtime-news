@@ -17,6 +17,7 @@ import {
 
 function App() {
   const [currentData, setData] = useState(null);
+  console.log('currentData: ', currentData);
   const [fontSize, setFontSize] = useState(0);
 
   const [contentType, setContentType] = useState("sina");
