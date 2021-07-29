@@ -68,6 +68,7 @@ function App() {
   useEffect(() => {
     const getdata = async () => {
       const { data } = await axios.get(sinaApi);
+      console.log('data: ', data);
       setData(data);
     };
     getdata();
